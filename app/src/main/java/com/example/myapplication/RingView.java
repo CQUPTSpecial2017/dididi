@@ -53,7 +53,7 @@ public class RingView extends View  {
     //外圆
     private Canvas mCanvas;
     private Paint paint;
-
+    private boolean lastIsLeft = false;
     //动画时间
     private int animTime = 1000;
     //显示的点位置
@@ -110,16 +110,22 @@ public class RingView extends View  {
                 isLeft = false;
             }
             else if (isRight){
-                for (int i = showImageId.size()-1; i>0 ; i--) {
-                    showImageId.set(i,showImageId.get(i-1));
-                }
-                showImageId.set(0,imageId[(currentItem+6)%10]);
-                currentItem--;
-                if (currentItem<0){
-                    currentItem+=10;
+                if (lastIsLeft){
+                   currentItem--;
+                }else {
+                    for (int i = showImageId.size()-1; i>0 ; i--) {
+                        showImageId.set(i,showImageId.get(i-1));
+                    }
+                    showImageId.set(0,imageId[(currentItem+6)%10]);
+                    currentItem--;
+                    if (currentItem<0){
+                        currentItem+=10;
+                    }
+
                 }
                 changeItemId();
                 isRight = false;
+
             }
 
         }
@@ -331,6 +337,7 @@ public class RingView extends View  {
         });
         animation.setDuration(500);
         animation.start();
+        lastIsLeft = true;
         return currentItem;
     }
 
@@ -400,6 +407,7 @@ public class RingView extends View  {
         });
         animation.setDuration(500);
         animation.start();
+        lastIsLeft = false;
         return currentItem;
     }
 

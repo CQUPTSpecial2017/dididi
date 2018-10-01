@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Rect;
+import android.media.Image;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +28,8 @@ public class FirstActivity extends AppCompatActivity {
     private ImageView leftImage,centerImage,rightImage;
     private int imgIds[]={R.drawable.aixin, R.drawable.huangguan, R.drawable.huangguan2, R.drawable.jiezhi,R.drawable.xiezi,
             R.drawable.yifu, R.drawable.huazhuangp, R.drawable.youxiji,R.drawable.zhuanlun, R.drawable.zuanshi};
-    private LoveImageView love1;
+    private ImageView love1;
+    private MyPaintLayout relative;
     private ImageView love2;
     private ImageView love3;
     private ImageView catchc;
@@ -89,10 +92,11 @@ public class FirstActivity extends AppCompatActivity {
         leftImage = (ImageView)findViewById(R.id.first_image_1);
         centerImage = (ImageView)findViewById(R.id.first_image_2);
         rightImage = (ImageView)findViewById(R.id.first_image_3);
+        relative = (MyPaintLayout)findViewById(R.id.first_relative);
         catchb=(ImageView)findViewById(R.id.catchb);
         catchc=(ImageView)findViewById(R.id.catchc);
         catchd=(ImageView)findViewById(R.id.catchd);
-        love1 = (LoveImageView) findViewById(R.id.love1);
+        love1 = (ImageView) findViewById(R.id.love1);
 
 
         Glide.with(this).load(R.drawable.catchpin).into(catchb);
@@ -101,8 +105,10 @@ public class FirstActivity extends AppCompatActivity {
 
         love1.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                love1.startMyAnimation(event.getX(),event.getY(),ringView.getMyWidth());
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Rect rect = new Rect();
+                love1.getGlobalVisibleRect(rect);
+                relative.startMyAnimation(ringView.getMyWidth(),rect);
                 return false;
             }
         });

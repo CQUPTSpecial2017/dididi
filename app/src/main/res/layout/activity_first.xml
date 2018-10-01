@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.myapplication.MyPaintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,20 +8,21 @@
     android:clipChildren="false"
     android:id="@+id/first_relative">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:cardCornerRadius="5dp"
-        android:id="@+id/first_card"
-        >
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/head_background"/>
+    <!--<android.support.v7.widget.CardView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--app:cardCornerRadius="5dp"-->
+        <!--android:id="@+id/first_card"-->
+        <!--&gt;-->
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@drawable/head_background"/>-->
 
 
-    </android.support.v7.widget.CardView>
+    <!--</android.support.v7.widget.CardView>-->
     <LinearLayout
+        android:id="@+id/first_linear"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -34,7 +35,7 @@
             android:foreground="@drawable/jinbi"
             android:layout_gravity="center_vertical"
             />
-        <com.example.demo.StrokeTextView
+        <com.example.myapplication.StrokeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -51,7 +52,7 @@
             android:foreground="@drawable/time"
             android:layout_gravity="center_vertical"
             />
-        <com.example.demo.StrokeTextView
+        <com.example.myapplication.StrokeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -75,7 +76,7 @@
             android:background="@drawable/hua"
             android:layout_gravity="center_vertical"
             />
-        <com.example.demo.StrokeTextView
+        <com.example.myapplication.StrokeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -91,7 +92,7 @@
             android:background="@drawable/zhuanlun"
             android:layout_gravity="center_vertical"
             />
-        <com.example.demo.StrokeTextView
+        <com.example.myapplication.StrokeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -107,7 +108,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_below="@+id/first_card"
+        android:layout_below="@+id/first_linear"
         android:layout_marginTop="3dp"
         android:background="#fff">
         <ImageView
@@ -131,14 +132,14 @@
             android:foreground="@drawable/zhuanpan"/>
     </LinearLayout>
 
-    <com.example.demo.RingView
+    <com.example.myapplication.RingView
         android:id="@+id/first_ring"
         android:layout_below="@+id/first_image_layout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/di">
-    </com.example.demo.RingView>
+    </com.example.myapplication.RingView>
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -181,7 +182,7 @@
                     app:layout_constraintStart_toStartOf="@+id/women"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.example.demo.LoveImageView
+                <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="8dp"
@@ -189,7 +190,6 @@
                     android:layout_marginBottom="120dp"
                     android:src="@drawable/love"
                     android:id="@+id/love1"
-
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </android.support.constraint.ConstraintLayout>
@@ -275,4 +275,4 @@
         </android.support.constraint.ConstraintLayout>
         </RelativeLayout>
     </ScrollView>
-</RelativeLayout>
+</com.example.myapplication.MyPaintLayout>

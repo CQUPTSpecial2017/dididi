@@ -7,24 +7,38 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.widget.RelativeLayout;
 
 /**
- * Created by 爱学习的呆子熹 on 2018/10/1.
+ * Created by 爱学习的呆子熹 on 2018/10/2.
  */
 
-public class LoveImageView extends android.support.v7.widget.AppCompatImageView {
+public class MyPaintLayout extends RelativeLayout {
     private float scaleWidth,scaleHeight;
     private Paint paint;
     private Canvas mCanvas;
     private LoveLocation currentLocation ;
     private boolean isFirst= true;
     private Context mContext;
-    public LoveImageView(Context context) {
-        super(context);
+    private ValueAnimator animation;
+    private Rect rect = new Rect();
+
+
+    public MyPaintLayout(Context context, AttributeSet attrs) {
+        super(context, attrs);
         mContext = context;
     }
 
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        isFirst = false;
+
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -32,26 +46,25 @@ public class LoveImageView extends android.support.v7.widget.AppCompatImageView 
         mCanvas=canvas;
         paint = new Paint();
         paint.setAntiAlias(true);
-        if (!isFirst){
-            drawChange(mCanvas);
-        }
-        isFirst =false;
+        drawBackground(mCanvas, currentLocation.getX(), currentLocation.getY());
     }
-    private void drawChange(Canvas canvas){
+
+    private void drawBackground(Canvas canvas, float x, float y){
         Bitmap OrgBitmap= BitmapFactory.decodeResource(getResources(),R.drawable.love );
-        scaleWidth = dip2px(mContext, 30) / OrgBitmap.getWidth();
-        scaleHeight = dip2px(mContext, 30) / OrgBitmap.getHeight();
+        scaleWidth = (float)dip2px(mContext, 20) / OrgBitmap.getWidth();
+        scaleHeight = (float)dip2px(mContext, 30) / OrgBitmap.getHeight();
         Matrix matrix = new Matrix();
         matrix.postScale(scaleWidth,scaleHeight);
         Bitmap resizedBitmap = Bitmap.createBitmap(OrgBitmap, 0, 0, OrgBitmap.getWidth(),
                 OrgBitmap.getHeight(), matrix, true);
         canvas.drawBitmap(resizedBitmap,
-                currentLocation.getX(), currentLocation.getY(), paint);
+                x, y, paint);
     }
-    public void startMyAnimation(float x, float y,float width){
-        currentLocation = new LoveLocation(x,y);
 
-        ValueAnimator animation = ValueAnimator.ofObject(new LoveEvaluator(),new LoveLocation(x,y)
+    public void startMyAnimation(float width, Rect rect){
+        this.rect = rect;
+        currentLocation = new LoveLocation(rect.left,rect.top);
+        animation= ValueAnimator.ofObject(new LoveEvaluator(),new LoveLocation(rect.left,rect.top)
                 ,new LoveLocation(width/2,0));
         animation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -60,7 +73,7 @@ public class LoveImageView extends android.support.v7.widget.AppCompatImageView 
                 invalidate();
             }
         });
-        animation.setDuration(500);
+        animation.setDuration(1000);
         animation.start();
     }
     public int dip2px(Context context, float dpValue) {
