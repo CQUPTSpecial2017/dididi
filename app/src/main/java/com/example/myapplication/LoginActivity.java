@@ -1,6 +1,10 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,12 +27,33 @@ public class LoginActivity extends AppCompatActivity {
    ImageView loginButton;
    ImageView playButton;
    CallbackManager callbackManager;
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {      //判断标志位
+                case 1:
+                    Intent intent=new Intent(LoginActivity.this,WinActivity.class);
+                    startActivity(intent);
+                    /**
+                     获取数据，更新UI
+                     */
+                    break;
+            }
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         init();
+        View decorView = getWindow().getDecorView();
+        int option = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(option);
     }
     public  void init(){
         callbackManager=CallbackManager.Factory.create();
@@ -41,9 +66,14 @@ public class LoginActivity extends AppCompatActivity {
                  LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile"));
              }
          });
+
          LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
              @Override
              public void onSuccess(LoginResult loginResult) {
+                 Message message=new Message();
+                 message.what=1;
+                 handler.sendMessage(message);
+
                  Toast.makeText(getApplicationContext(), "facebook登录成功", Toast.LENGTH_SHORT).show();
              }
 
@@ -62,10 +92,11 @@ public class LoginActivity extends AppCompatActivity {
          playButton.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 Intent intent=new Intent(LoginActivity.this,WinActivity.class);
+                 Intent intent=new Intent(LoginActivity.this,VideoActivity.class);
                  startActivity(intent);
              }
          });
+         giftImage.bringToFront();
         Glide.with(this).load(R.drawable.gift2).into(giftImage);
 
 

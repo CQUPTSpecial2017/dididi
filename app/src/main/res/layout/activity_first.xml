@@ -27,6 +27,7 @@
         android:layout_height="match_parent"
         >
 
+
     </com.example.myapplication.PaintView>
     <LinearLayout
         android:id="@+id/first_linear"
@@ -258,6 +259,22 @@
                 android:layout_height="80dp"
                 android:layout_below="@id/first_relative"
                 android:layout_marginTop="20dp" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/bag"
+        android:id="@+id/bag"/>
+
+    <ImageView
+        android:id="@+id/coin"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/coin" />
 
 
 </RelativeLayout>
