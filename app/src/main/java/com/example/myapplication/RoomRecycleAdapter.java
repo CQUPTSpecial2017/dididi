@@ -56,18 +56,18 @@ public class RoomRecycleAdapter extends RecyclerView.Adapter<RoomRecycleAdapter.
         float x,y;
         ImageView love1;
         ImageView love2;
-        ImageView love3;
+        ImageView love3;ImageView catchd;
         ImageView catchc;
         ImageView catchb;
-        ImageView catchd;
+
         RoomHolder(View itemView) {
             super(itemView);
             catchb=(ImageView)itemView.findViewById(R.id.catchb);
             catchc=(ImageView)itemView.findViewById(R.id.catchc);
-            catchd=(ImageView)itemView.findViewById(R.id.catchd);
+
             love1=(ImageView)itemView.findViewById(R.id.love1);
             love2=(ImageView)itemView.findViewById(R.id.love2);
-            love3=(ImageView)itemView.findViewById(R.id.love3);
+            love3=(ImageView)itemView.findViewById(R.id.love3); catchd=(ImageView)itemView.findViewById(R.id.catchd);
             love1.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {

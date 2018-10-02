@@ -186,10 +186,14 @@ public class FirstActivity extends AppCompatActivity {
 
         viewPager = (CustomViewPager) findViewById(R.id.first_viewpager);
         mFragments = new ArrayList<>();
-        for (int i = 0; i <12 ; i++) {
+        for (int i = 0; i <6 ; i++) {
             CrownFragment fragment = new CrownFragment();
             fragment.setPaintView(paint);
             fragment.setWidth(1080);
+            mFragments.add(fragment);
+        }
+        for (int i = 6; i <12 ; i++) {
+            DemoFragment fragment = new DemoFragment();
             mFragments.add(fragment);
         }
         MyViewpagerAdapter myViewpagerAdapter = new MyViewpagerAdapter(getSupportFragmentManager(),mFragments);
@@ -197,6 +201,7 @@ public class FirstActivity extends AppCompatActivity {
         viewPager.setAdapter(myViewpagerAdapter);
         viewPager.setOffscreenPageLimit(3);
         viewPager.setCurrentItem(1);
+
         Glide.with(this).load(R.drawable.left_light).into(leftLight);
         Glide.with(this).load(R.drawable.right_light).into(rightLight);
         Glide.with(this).load(R.drawable.catch_image).into(leftCatch);
