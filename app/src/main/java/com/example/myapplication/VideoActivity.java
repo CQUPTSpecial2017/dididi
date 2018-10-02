@@ -33,6 +33,7 @@ private final int SKIP=1;
                 case 1:
                     Intent intent=new Intent(VideoActivity.this,ToyMachineActivity.class);
                     startActivity(intent);
+                    finish();
                     /**
                      获取数据，更新UI
                      */

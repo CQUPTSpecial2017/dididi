@@ -60,6 +60,7 @@ explode.bringToFront();
             public void onClick(View v) {
                 Intent intent=new Intent(WinActivity.this,VideoActivity.class);
                 startActivity(intent);
+
             }
         });
         numberImage.bringToFront();
