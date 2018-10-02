@@ -43,6 +43,7 @@ public class ToyMachineActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(ToyMachineActivity.this,FirstActivity.class);
                 startActivity(intent);
+               
             }
         });
 
