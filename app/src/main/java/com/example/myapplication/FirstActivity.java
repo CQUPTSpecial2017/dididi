@@ -32,7 +32,8 @@ public class FirstActivity extends AppCompatActivity {
     private RingView ringView;
     private ImageView centerImage;
     private int imgIds[]={R.drawable.aixin, R.drawable.huangguan, R.drawable.huangguan2, R.drawable.jiezhi,R.drawable.xiezi,
-            R.drawable.yifu, R.drawable.huazhuangp, R.drawable.youxiji,R.drawable.denghao, R.drawable.zuanshi};
+            R.drawable.yifu, R.drawable.huazhuangp, R.drawable.youxiji,R.drawable.denghao, R.drawable.zuanshi,
+            R.drawable.yifu,R.drawable.huazhuangp };
     private ImageView jinbi,xiong,time,zhuanlun,hua;
     private PaintView paint;
         private List<Fragment> mFragments;
@@ -131,6 +132,7 @@ public class FirstActivity extends AppCompatActivity {
         jinbi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ringView.setFirst(true);
                 Intent intent = new Intent(FirstActivity.this,EmptyActivity.class);
                 startActivity(intent);
             }
@@ -138,6 +140,7 @@ public class FirstActivity extends AppCompatActivity {
         xiong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ringView.setFirst(false);
                 Intent intent = new Intent(FirstActivity.this,EmptyActivity.class);
                 startActivity(intent);
             }
@@ -145,6 +148,7 @@ public class FirstActivity extends AppCompatActivity {
         hua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ringView.setFirst(false);
                 Intent intent = new Intent(FirstActivity.this,EmptyActivity.class);
                 startActivity(intent);
             }
@@ -152,6 +156,7 @@ public class FirstActivity extends AppCompatActivity {
         time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ringView.setFirst(false);
                 Intent intent = new Intent(FirstActivity.this,EmptyActivity.class);
                 startActivity(intent);
             }
@@ -159,6 +164,7 @@ public class FirstActivity extends AppCompatActivity {
         zhuanlun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ringView.setFirst(false);
                 Intent intent = new Intent(FirstActivity.this,EmptyActivity.class);
                 startActivity(intent);
             }
@@ -192,7 +198,7 @@ public class FirstActivity extends AppCompatActivity {
             fragment.setWidth(1080);
             mFragments.add(fragment);
         }
-        for (int i = 6; i <12 ; i++) {
+        for (int i = 6; i <14 ; i++) {
             DemoFragment fragment = new DemoFragment();
             mFragments.add(fragment);
         }
@@ -200,7 +206,7 @@ public class FirstActivity extends AppCompatActivity {
 
         viewPager.setAdapter(myViewpagerAdapter);
         viewPager.setOffscreenPageLimit(3);
-        viewPager.setCurrentItem(1);
+        viewPager.setCurrentItem(5);
 
         Glide.with(this).load(R.drawable.left_light).into(leftLight);
         Glide.with(this).load(R.drawable.right_light).into(rightLight);

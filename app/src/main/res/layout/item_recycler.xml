@@ -10,54 +10,51 @@
         android:layout_height="match_parent"
         android:layout_below="@id/first_relative">
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
             android:id="@+id/testItem">
-            <android.support.constraint.ConstraintLayout
+            <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:layout_margin="5dp"
                 >
                 <ImageView
                     android:id="@+id/women"
                     android:layout_width="wrap_content"
-                    android:layout_height="200dp"
+                    android:layout_height="match_parent"
                     android:src="@drawable/women" />
 
                 <ImageView
                     android:id="@+id/catchb"
                     android:layout_width="60dp"
                     android:layout_height="20dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="140dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="132dp"
                     android:layout_marginEnd="72dp"
-                    android:layout_marginBottom="16dp"
+
                     android:src="@drawable/contin"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/women"
-                    app:layout_constraintTop_toTopOf="parent" />
+                   />
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="120dp"
+
                     android:src="@drawable/love"
                     android:id="@+id/love1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </android.support.constraint.ConstraintLayout>
-            <android.support.constraint.ConstraintLayout
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+            <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="200dp"
-                >
+                android:layout_height="match_parent"
+                android:layout_margin="5dp">
                 <ImageView
                     android:id="@+id/airplane"
                     android:layout_width="wrap_content"
-                    android:layout_height="200dp"
+                    android:layout_height="match_parent"
 
                     android:src="@drawable/airplane" />
 
@@ -65,8 +62,8 @@
                     android:id="@+id/catchc"
                     android:layout_width="60dp"
                     android:layout_height="20dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="140dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="130dp"
                     android:layout_marginEnd="72dp"
                     android:layout_marginBottom="16dp"
                     android:src="@drawable/contin"
@@ -79,25 +76,23 @@
                     android:layout_height="30dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="160dp"
+
                     android:src="@drawable/love"
                     android:id="@+id/love2"
-                    app:layout_constraintBottom_toBottomOf="@+id/airplane"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </android.support.constraint.ConstraintLayout>
+                    android:layout_alignParentRight="true" />
+            </RelativeLayout>
         </LinearLayout>
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:layout_below="@id/testItem"
 
             >
 
             <ImageView
-                android:layout_width="400dp"
-                android:layout_height="200dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:src="@drawable/lipstick"
                 app:layout_constraintStart_toStartOf="parent"
                 />
@@ -107,28 +102,22 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="72dp"
+
                 android:src="@drawable/love"
                 android:id="@+id/love3"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_alignParentRight="true" />
 
             <ImageView
                 android:id="@+id/catchd"
                 android:layout_width="60dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="40dp"
                 android:layout_marginTop="64dp"
                 android:layout_marginEnd="260dp"
                 android:layout_marginBottom="8dp"
                 android:src="@drawable/contin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </android.support.constraint.ConstraintLayout>
+                />
+        </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>
 

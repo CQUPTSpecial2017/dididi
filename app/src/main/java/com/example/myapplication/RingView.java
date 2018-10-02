@@ -30,22 +30,21 @@ import java.util.Map;
  */
 
 public class RingView extends View  {
-    private int currentItem=3 ;
+    private int currentItem=5 ;
     private int[] imageId = {
-            R.drawable.aixin, R.drawable.huangguan, R.drawable.huangguan2, R.drawable.jiezhi,R.drawable.xiezi,
-            R.drawable.yifu, R.drawable.huazhuangp, R.drawable.youxiji,R.drawable.denghao, R.drawable.zuanshi
+            R.drawable.denghao,R.drawable.jiezhi,R.drawable.aixin, R.drawable.huazhuangp, R.drawable.huangguan,
+            R.drawable.huangguan2,R.drawable.zuanshi,R.drawable.yifu,R.drawable.youxiji,R.drawable.xiangshui,R.drawable.xiezi
+            ,R.drawable.denghao
     };
     private List<Integer> showImageId = new ArrayList<>();
-    private int leftItemId=0;
-    private int rightItemId=6;
-    private int showNumber =7;
+    private int showNumber =11;
     private Context context;
     private boolean isLeft=false,isRight=false;
     //View默认最小宽度
     private static final int DEFAULT_MIN_WIDTH = 400;
     private int width,height;
-    private int itemWidthDp,itemHeightDp,bigItemWidthDp,bigItemHeightDp;
-    private int allWidthDp,allHeightDp;
+    private int bigItemWidthDp,bigItemHeightDp;
+    private int allWidthDp,allHeightDp,itemWidthDp,itemHeightDp;
     private float top,bottom,left,right;
     private ImageDetail currentDetail = new ImageDetail();
     //背景
@@ -54,6 +53,8 @@ public class RingView extends View  {
     private Canvas mCanvas;
     private Paint paint;
     private boolean lastIsLeft = false;
+    private boolean lastRight = false;
+
     //动画时间
     private int animTime = 1000;
     //显示的点位置
@@ -75,6 +76,7 @@ public class RingView extends View  {
 
     private void initShowImageId(){
         if (!isFirst){
+
             for (int i = 0; i < showNumber; i++) {
                 showImageId.add(imageId[i]);
             }
@@ -83,50 +85,32 @@ public class RingView extends View  {
         else {
 
             if (isLeft){
-                if (currentItem < 3) {
-                    int j = 0;
-                    for (int i = leftItemId; i < imageId.length; i++, j++) {
-                        showImageId.set(j, imageId[i]);
-                    }
-                    for (int i = 0; j <= showNumber; i++, j++) {
-                        showImageId.set(j, imageId[i]);
-                    }
-                }
-                else if (currentItem > 6) {
-                    int j = 0 ;
-                    for (int i = leftItemId; i <imageId.length; i++, j++) {
-                        showImageId.set(j, imageId[i]);
-                    }
-                    for (int i = 0 ; showNumber-j>=0 ; i++, j++) {
-                        showImageId.set(j, imageId[i]);
-                    }
-                }
-                else{
-                    for (int i = leftItemId, j = 0; i < leftItemId + showNumber; i++, j++) {
-                        showImageId.set(j, imageId[i%10]);
-                    }
-                }
-                showImageId.set(showNumber,imageId[(rightItemId+1)%10]);
-                isLeft = false;
-            }
-            else if (isRight){
-                if (lastIsLeft){
-                   currentItem--;
-                    if (currentItem<0){
-                        currentItem+=10;
-                    }
-                }else {
-                    for (int i = showImageId.size()-1; i>0 ; i--) {
-                        showImageId.set(i,showImageId.get(i-1));
-                    }
-                    showImageId.set(0,imageId[(currentItem+6)%10]);
-                    currentItem--;
-                    if (currentItem<0){
-                        currentItem+=10;
-                    }
+                currentItem=(currentItem+12)%11;
+                if (!lastIsLeft){
 
                 }
-                changeItemId();
+                else {
+                    int id =showImageId.get(1);
+                    for (int i = 0; i <showNumber ; i++) {
+                        showImageId.set(i,showImageId.get(i+1));
+                    }
+                    showImageId.set(showNumber,id);
+                }
+
+                isLeft = false;
+                lastIsLeft = true;
+            }
+            else if (isRight){
+                currentItem=(currentItem+10)%11;
+                if (lastIsLeft){
+                }else {
+                    int id = showImageId.get(showNumber - 1);
+                    for (int i = showImageId.size() - 1; i > 0; i--) {
+                        showImageId.set(i, showImageId.get(i - 1));
+                    }
+                    showImageId.set(0, id);
+                }
+                lastIsLeft = false;
                 isRight = false;
 
             }
@@ -136,22 +120,22 @@ public class RingView extends View  {
 
     private void  initLocations(){
         float x,y;
-        itemHeightDp = 50;
-        itemWidthDp = 50;
-        bigItemHeightDp = 60;
-        bigItemWidthDp = 60;
-        for (int i = 0; i <7 ; i++) {
-            if (i<3)
-                x= i * dip2px(context,(allWidthDp/2-40)/3) + dip2px(context,5);
-            else if (i>3)
-                x= width- (7-i) * dip2px(context,(allWidthDp/2-40)/3) ;
+        itemHeightDp=35;
+        itemWidthDp=35;
+        bigItemHeightDp = 50;
+        bigItemWidthDp = 50;
+        for (int i = 0; i <showNumber ; i++) {
+            if (i<5)
+                x= i * dip2px(context,(allWidthDp/2-30)/5);
+            else if (i>5)
+                x= width/2 + (i-5)*dip2px(context,(allWidthDp/2-40)/5) ;
             else
-                x= dip2px(context,(allWidthDp/2-30)) ;
+                x= dip2px(context,(allWidthDp/2-bigItemWidthDp/2)) ;
 
-            if (i<3)
-                y=dip2px(context, i  * 4);
-            else if (i>3)
-                y=dip2px(context, 24 - i * 4);
+            if (i<5)
+                y=dip2px(context, i  * 3);
+            else if (i>5)
+                y=dip2px(context, 24 - i * 2);
             else
                 y=dip2px(context, 15);
             xLocations.add(x);
@@ -214,6 +198,7 @@ public class RingView extends View  {
             //画初始图像
             drawBackRound(mCanvas);
             isFirst = !isFirst;
+
         }
         else {
             drawChange(canvas);
@@ -223,6 +208,7 @@ public class RingView extends View  {
     private void drawChange(Canvas canvas) {
         initPaint();
         paint.setAntiAlias(true);
+        //杆
         float scaleWidth1,scaleHeight1;
         Bitmap OrgBitmap2=BitmapFactory.decodeResource(getResources(), R.drawable.di);
         scaleWidth1=(float) getWidth() / OrgBitmap2.getWidth();
@@ -235,24 +221,22 @@ public class RingView extends View  {
                 OrgBitmap2.getHeight(), matrix2, true);
         canvas.drawBitmap(resizedBitmap2,
                 0,0, paint);
-
+        //图
         for (int i = 0; i < xLocations.size(); i++) {
             Bitmap OrgBitmap = BitmapFactory.decodeResource(getResources(), showImageId.get(i));
-
             Matrix matrix = new Matrix();
             matrix.postScale(currentDetail.getScaleWidths().get(i), currentDetail.getScaleHeights().get(i));
             Bitmap resizedBitmap = Bitmap.createBitmap(OrgBitmap, 0, 0, OrgBitmap.getWidth(),
                     OrgBitmap.getHeight(), matrix, true);
-
-
             canvas.drawBitmap(resizedBitmap,
                         currentDetail.getxLocations().get(i), currentDetail.getyLocations().get(i), paint);
         }
+        //brands
         float scaleWidth,scaleHeight;
         Bitmap OrgBitmap1=
                 BitmapFactory.decodeResource(getResources(), R.drawable.brands);
         scaleWidth=(float) dip2px(context, 80) / OrgBitmap1.getWidth();
-        scaleHeight=(float) dip2px(context, 40) / OrgBitmap1.getHeight();
+        scaleHeight=(float) dip2px(context, 30) / OrgBitmap1.getHeight();
 
         Matrix matrix1 = new Matrix();
 
@@ -260,7 +244,7 @@ public class RingView extends View  {
         Bitmap resizedBitmap1 = Bitmap.createBitmap(OrgBitmap1, 0, 0, OrgBitmap1.getWidth(),
                 OrgBitmap1.getHeight(), matrix1, true);
         canvas.drawBitmap(resizedBitmap1,
-                xLocations.get(3)-dip2px(context,10),0, paint);
+                xLocations.get(5)-dip2px(context,15),0, paint);
     }
 
 
@@ -275,22 +259,23 @@ public class RingView extends View  {
         initLocations();
         paint.setColor(Color.BLACK);
         paint.setAntiAlias(true);
+
         float scaleWidth1,scaleHeight1;
         Bitmap OrgBitmap2=BitmapFactory.decodeResource(getResources(), R.drawable.di);
         scaleWidth1=(float) getWidth() / OrgBitmap2.getWidth();
         scaleHeight1=(float) dip2px(context, 20) / OrgBitmap2.getHeight();
-
         Matrix matrix2 = new Matrix();
-
         matrix2.postScale(scaleWidth1,scaleHeight1);
         Bitmap resizedBitmap2 = Bitmap.createBitmap(OrgBitmap2, 0, 0, OrgBitmap2.getWidth(),
                 OrgBitmap2.getHeight(), matrix2, true);
         canvas.drawBitmap(resizedBitmap2,
                 0,0, paint);
 
+
+
         for (int i = 0; i <xLocations.size() ; i++) {
             Bitmap OrgBitmap=BitmapFactory.decodeResource(getResources(), imageId[i]);
-            if (i!=3) {
+            if (i!=5) {
                 scaleWidths.add(i,(float) dip2px(context, itemWidthDp) / OrgBitmap.getWidth());
                 scaleHeights.add(i,(float) dip2px(context, itemHeightDp) / OrgBitmap.getHeight());
                 changeScaleWidths.add(i,(float) dip2px(context, itemWidthDp) / OrgBitmap.getWidth());
@@ -314,7 +299,7 @@ public class RingView extends View  {
         float scaleWidth,scaleHeight;
         Bitmap OrgBitmap1=BitmapFactory.decodeResource(getResources(), R.drawable.brands);
         scaleWidth=(float) dip2px(context, 80) / OrgBitmap1.getWidth();
-        scaleHeight=(float) dip2px(context, 40) / OrgBitmap1.getHeight();
+        scaleHeight=(float) dip2px(context, 30) / OrgBitmap1.getHeight();
 
         Matrix matrix1 = new Matrix();
 
@@ -322,7 +307,7 @@ public class RingView extends View  {
         Bitmap resizedBitmap1 = Bitmap.createBitmap(OrgBitmap1, 0, 0, OrgBitmap1.getWidth(),
                 OrgBitmap1.getHeight(), matrix1, true);
         canvas.drawBitmap(resizedBitmap1,
-                xLocations.get(3)-dip2px(context,10),0, paint);
+                xLocations.get(5)-dip2px(context,15),0, paint);
         changeScaleHeights.add(showNumber,0.1f);
         changeScaleWidths.add(showNumber,0.1f);
         scaleHeights.add(showNumber,0.1f);
@@ -337,7 +322,7 @@ public class RingView extends View  {
         initShowImageId();
         for (int i = 0; i <xLocations.size() ; i++) {
             Bitmap OrgBitmap=BitmapFactory.decodeResource(getResources(), showImageId.get(i));
-            if (i!=3) {
+            if (i!=5) {
                 scaleWidths.set(i,(float) dip2px(context, itemWidthDp) / OrgBitmap.getWidth());
                 scaleHeights.set(i,(float) dip2px(context, itemHeightDp) / OrgBitmap.getHeight());
 
@@ -347,7 +332,7 @@ public class RingView extends View  {
 
             }
         }
-        changeItemId();
+
         ImageDetail startDetail = new ImageDetail();
         startDetail.setxLocations(xLocations);
         startDetail.setyLocations(yLocations);
@@ -361,7 +346,7 @@ public class RingView extends View  {
         }
         for (int i = xLocations.size()-1; i >0 ; i-- ){
             Bitmap OrgBitmap=BitmapFactory.decodeResource(getResources(), showImageId.get(i));
-            if (i!=4) {
+            if (i!=6) {
                 changeScaleWidths.set(i,(float) dip2px(context, itemWidthDp) / OrgBitmap.getWidth());
                 changeScaleHeights.set(i,(float) dip2px(context, itemHeightDp) / OrgBitmap.getHeight());
             }else {
@@ -393,7 +378,6 @@ public class RingView extends View  {
         });
         animation.setDuration(500);
         animation.start();
-        lastIsLeft = true;
         return currentItem;
     }
 
@@ -403,7 +387,7 @@ public class RingView extends View  {
         initShowImageId();
         for (int i = 0; i <xLocations.size() ; i++) {
             Bitmap OrgBitmap=BitmapFactory.decodeResource(getResources(), showImageId.get(i));
-            if (i!=4) {
+            if (i!=6) {
                 scaleWidths.set(i,(float) dip2px(context, itemWidthDp) / OrgBitmap.getWidth());
                 scaleHeights.set(i,(float) dip2px(context, itemHeightDp) / OrgBitmap.getHeight());
 
@@ -429,7 +413,7 @@ public class RingView extends View  {
         }
         for (int i = xLocations.size()-1; i >=0 ; i-- ){
             Bitmap OrgBitmap=BitmapFactory.decodeResource(getResources(), showImageId.get(i));
-            if (i!=3) {
+            if (i!=5) {
                 changeScaleWidths.set(i,(float) dip2px(context, itemWidthDp) / OrgBitmap.getWidth());
                 changeScaleHeights.set(i,(float) dip2px(context, itemHeightDp) / OrgBitmap.getHeight());
             }else {
@@ -459,7 +443,7 @@ public class RingView extends View  {
                 invalidate();
             }
         });
-        animation.setDuration(300);
+        animation.setDuration(500);
         animation.start();
         lastIsLeft = false;
         return currentItem;
@@ -487,14 +471,7 @@ public class RingView extends View  {
         return (int) (pxValue / scale + 0.5f);
     }
 
-    private void changeItemId(){
-        leftItemId = currentItem-3;
-        rightItemId = currentItem+3;
-        rightItemId %= 10;
-        currentItem %= 10;
-        if (leftItemId<0 )
-            leftItemId +=10;
-        leftItemId%=10;
+    public void setFirst(boolean first) {
+        isFirst = first;
     }
-
 }
