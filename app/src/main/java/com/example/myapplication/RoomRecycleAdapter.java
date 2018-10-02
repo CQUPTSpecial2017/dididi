@@ -16,15 +16,17 @@ import com.example.myapplication.R;
 
 public class RoomRecycleAdapter extends RecyclerView.Adapter<RoomRecycleAdapter.RoomHolder> {
 
-    Context context;
-    private static float width,height;
+    private Context context;
+    private PaintView paintView;
+    private float width;
 
-    public void setWidth(float width) {
-        this.width = width;
+    public void setPaintView(PaintView paintView) {
+        this.paintView = paintView;
     }
 
-    public void setHeight(float height) {
-        this.height = height;
+    public void setWidth(float width) {
+
+        this.width = width;
     }
 
     public RoomRecycleAdapter(Context context) {
@@ -33,7 +35,8 @@ public class RoomRecycleAdapter extends RecyclerView.Adapter<RoomRecycleAdapter.
 
     @Override
     public RoomHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_room, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler, parent, false);
+
         return new RoomHolder(v);
     }
 
@@ -49,7 +52,7 @@ public class RoomRecycleAdapter extends RecyclerView.Adapter<RoomRecycleAdapter.
         return 10;
     }
 
-    static class RoomHolder extends RecyclerView.ViewHolder {
+    class RoomHolder extends RecyclerView.ViewHolder {
         float x,y;
         ImageView love1;
         ImageView love2;
@@ -63,32 +66,43 @@ public class RoomRecycleAdapter extends RecyclerView.Adapter<RoomRecycleAdapter.
             catchc=(ImageView)itemView.findViewById(R.id.catchc);
             catchd=(ImageView)itemView.findViewById(R.id.catchd);
             love1=(ImageView)itemView.findViewById(R.id.love1);
-
-            love1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ValueAnimator animation = ValueAnimator.ofObject(new LoveEvaluator(),new LoveLocation(x,y)
-                    ,new LoveLocation(width/2,0));
-
-
-                    animation.start();
-                }
-            });
+            love2=(ImageView)itemView.findViewById(R.id.love2);
+            love3=(ImageView)itemView.findViewById(R.id.love3);
             love1.setOnTouchListener(new View.OnTouchListener() {
                 @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    x = event.getRawX();
-                    y = event.getRawY();
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    int[] location = new int[2];
+                    love1.getLocationOnScreen(location);
+                    paintView.startMyAnimation(width,location);
+                    paintView.bringToFront();
+
+                    return false;
+                }
+            });
+            love2.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    int[] location = new int[2];
+                    love2.getLocationOnScreen(location);
+                    paintView.startMyAnimation(width,location);
+                    paintView.bringToFront();
+
+                    return false;
+                }
+            });
+            love3.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    int[] location = new int[2];
+                    love3.getLocationOnScreen(location);
+                    paintView.startMyAnimation(width,location);
+                    paintView.bringToFront();
+
                     return false;
                 }
             });
         }
     }
-    public void  startAn(ImageView imageView){
 
-
-
-
-    }
 }
 

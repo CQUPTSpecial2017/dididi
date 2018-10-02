@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.myapplication.MyPaintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FirstActivity"
     android:clipChildren="false"
-    android:id="@+id/first_relative">
+    >
 
     <!--<android.support.v7.widget.CardView-->
         <!--android:layout_width="match_parent"-->
@@ -21,6 +21,13 @@
 
 
     <!--</android.support.v7.widget.CardView>-->
+    <com.example.myapplication.PaintView
+        android:id="@+id/first_paint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    </com.example.myapplication.PaintView>
     <LinearLayout
         android:id="@+id/first_linear"
         android:layout_width="match_parent"
@@ -28,6 +35,7 @@
         android:orientation="horizontal"
         android:background="@drawable/head_background">
         <ImageView
+            android:id="@+id/first_jinbi"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"
@@ -45,6 +53,7 @@
             android:textSize="14sp"
             android:layout_gravity="center_vertical"/>
         <ImageView
+            android:id="@+id/first_time"
             android:layout_width="30dp"
             android:layout_height="35dp"
             android:layout_marginLeft="20dp"
@@ -62,20 +71,22 @@
             android:textSize="14sp"
             android:layout_gravity="center_vertical"/>
         <ImageView
-            android:layout_width="50dp"
+            android:id="@+id/first_xiong"
+            android:layout_width="55dp"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
             android:background="@drawable/deepblue_to_blue"
             android:foreground="@drawable/xiong"
             android:layout_gravity="center_horizontal"
             />
+
         <ImageView
-            android:layout_width="30dp"
+            android:id="@+id/first_hua"
+            android:layout_width="25dp"
             android:layout_height="35dp"
-            android:layout_marginLeft="20dp"
-            android:background="@drawable/hua"
             android:layout_gravity="center_vertical"
-            />
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/hua" />
         <com.example.myapplication.StrokeTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -86,6 +97,7 @@
             android:textSize="14sp"
             android:layout_gravity="center_vertical"/>
         <ImageView
+            android:id="@+id/first_zhuanlun"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="10dp"
@@ -103,176 +115,149 @@
             android:layout_gravity="center_vertical"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/first_image_layout"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@+id/first_linear"
-        android:layout_marginTop="3dp"
-        android:background="#fff">
-        <ImageView
-            android:id="@+id/first_image_1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/leftimage"/>
-        <ImageView
-            android:id="@+id/first_image_2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/centerimage"/>
-        <ImageView
-            android:id="@+id/first_image_3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/rightimage"
-            android:foreground="@drawable/zhuanpan"/>
-    </LinearLayout>
 
-    <com.example.myapplication.RingView
-        android:id="@+id/first_ring"
-        android:layout_below="@+id/first_image_layout"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/di">
-    </com.example.myapplication.RingView>
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@+id/first_ring"
-        android:layout_marginTop="10dp">
 
-        <RelativeLayout
-         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/testItem">
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="200dp"
-                android:layout_weight="1"
-                >
-                <ImageView
-                    android:id="@+id/women"
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp"
-                    android:src="@drawable/women" />
+            <LinearLayout
+                android:id="@+id/first_image_layout"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="3dp"
+                android:layout_below="@+id/first_linear"
+                android:background="#fff"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/first_image_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/room" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/left_top_image" />
+
+                    <ImageView
+                        android:id="@+id/first_catch"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
 
                 <ImageView
-                    android:id="@+id/catchb"
-                    android:layout_width="60dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="140dp"
-                    android:layout_marginEnd="72dp"
-                    android:layout_marginBottom="16dp"
-                    android:src="@drawable/contin"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/women"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:id="@+id/first_image_2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/centerimage" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/first_image_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/rightimage" />
+
+                    <ImageView
+                        android:id="@+id/first_zhuanpan"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true" />
+
+                    <ImageView
+                        android:id="@+id/first_spin"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/first_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/first_image_layout">
+
+
+                <com.example.myapplication.RingView
+                    android:id="@+id/first_ring"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="5dp"
+                    >
+
+                </com.example.myapplication.RingView>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="50dp"
+                    android:src="@drawable/left" />
+
+                <ImageView
+                    android:id="@+id/left_light"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="40dp" />
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="120dp"
-                    android:src="@drawable/love"
-                    android:id="@+id/love1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </android.support.constraint.ConstraintLayout>
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="200dp"
-                >
-                <ImageView
-                    android:id="@+id/airplane"
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp"
-
-                    android:src="@drawable/airplane" />
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="50dp"
+                    android:src="@drawable/right" />
 
                 <ImageView
-                    android:id="@+id/catchc"
-                    android:layout_width="60dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="140dp"
-                    android:layout_marginEnd="72dp"
-                    android:layout_marginBottom="16dp"
-                    android:src="@drawable/contin"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/airplane"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="160dp"
-                    android:src="@drawable/love"
-                    android:id="@+id/love2"
-                    app:layout_constraintBottom_toBottomOf="@+id/airplane"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </android.support.constraint.ConstraintLayout>
-        </LinearLayout>
+                    android:id="@+id/right_light"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="40dp" />
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:layout_below="@id/testItem"
 
-            >
+
+                    <ImageView
+                        android:id="@+id/dengguang"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:alpha="0.6"/>
+
+            </RelativeLayout>
+
+                <com.example.myapplication.CustomViewPager
+                    android:id="@+id/first_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_below="@id/first_relative"
+                    >
+
+                </com.example.myapplication.CustomViewPager>
+
+
 
             <ImageView
-                android:layout_width="400dp"
-                android:layout_height="200dp"
-                android:src="@drawable/lipstick"
-                app:layout_constraintStart_toStartOf="parent"
-                />
+                android:id="@+id/watch_1"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_below="@id/first_relative"
+                android:layout_marginTop="20dp" />
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="72dp"
-                android:src="@drawable/love"
-                android:id="@+id/love3"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/catchd"
-                android:layout_width="60dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="64dp"
-                android:layout_marginEnd="260dp"
-                android:layout_marginBottom="8dp"
-                android:src="@drawable/contin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </android.support.constraint.ConstraintLayout>
-        </RelativeLayout>
-    </ScrollView>
-</com.example.myapplication.MyPaintLayout>
+</RelativeLayout>

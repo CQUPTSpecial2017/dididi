@@ -2,8 +2,12 @@ package com.example.myapplication;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.media.Image;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
@@ -25,16 +30,14 @@ public class FirstActivity extends AppCompatActivity {
 
     private float mPosX,mPosY,mCurPosX,mCurPosY;
     private RingView ringView;
-    private ImageView leftImage,centerImage,rightImage;
+    private ImageView centerImage;
     private int imgIds[]={R.drawable.aixin, R.drawable.huangguan, R.drawable.huangguan2, R.drawable.jiezhi,R.drawable.xiezi,
-            R.drawable.yifu, R.drawable.huazhuangp, R.drawable.youxiji,R.drawable.zhuanlun, R.drawable.zuanshi};
-    private ImageView love1;
-    private MyPaintLayout relative;
-    private ImageView love2;
-    private ImageView love3;
-    private ImageView catchc;
-    private ImageView catchb;
-    private ImageView catchd;
+            R.drawable.yifu, R.drawable.huazhuangp, R.drawable.youxiji,R.drawable.denghao, R.drawable.zuanshi};
+    private ImageView jinbi,xiong,time,zhuanlun,hua;
+    private PaintView paint;
+        private List<Fragment> mFragments;
+    private ImageView leftLight,rightLight,leftCatch,spin,zhuanpan,watch,leftCircle;
+    private CustomViewPager viewPager ;
     private float x,y,width,heigth;
 
     @Override
@@ -42,6 +45,14 @@ public class FirstActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
         initView();
+        initListener();
+
+
+
+
+    }
+    private void initListener(){
+
         ringView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -70,12 +81,20 @@ public class FirstActivity extends AppCompatActivity {
 //                        }
                         if (mCurPosX - mPosX > 0
                                 && (Math.abs(mCurPosX - mPosX) > 25)) {
-                            centerImage.setImageResource(imgIds[ringView.startRightAnimation(mPosX,mCurPosX)]);
+                            int i;
+
+                            i=ringView.startRightAnimation(mPosX,mCurPosX);
+                            centerImage.setImageResource(imgIds[i]);
+                            viewPager.setCurrentItem(i,true);
 
                         } else if (mCurPosX - mPosX < 0
                                 && (Math.abs(mCurPosX - mPosX) > 25)) {
-                            centerImage.setImageResource(imgIds[ringView.startLeftAnimation(mPosX,mCurPosX)]);
-                        }
+                            int i;
+
+                            i=ringView.startLeftAnimation(mPosX,mCurPosX);
+                            centerImage.setImageResource(imgIds[i]);
+                            viewPager.setCurrentItem(i,true);
+                }
                         break;
                 }
                 return true;
@@ -83,38 +102,136 @@ public class FirstActivity extends AppCompatActivity {
 
         });
 
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
-
-
-    }
-    private void initView(){
-        ringView = (RingView)findViewById(R.id.first_ring);
-        leftImage = (ImageView)findViewById(R.id.first_image_1);
-        centerImage = (ImageView)findViewById(R.id.first_image_2);
-        rightImage = (ImageView)findViewById(R.id.first_image_3);
-        relative = (MyPaintLayout)findViewById(R.id.first_relative);
-        catchb=(ImageView)findViewById(R.id.catchb);
-        catchc=(ImageView)findViewById(R.id.catchc);
-        catchd=(ImageView)findViewById(R.id.catchd);
-        love1 = (ImageView) findViewById(R.id.love1);
-
-
-        Glide.with(this).load(R.drawable.catchpin).into(catchb);
-        Glide.with(this).load(R.drawable.catchpin).into(catchc);
-        Glide.with(this).load(R.drawable.catchpin).into(catchd);
-
-        love1.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                Rect rect = new Rect();
-                love1.getGlobalVisibleRect(rect);
-                relative.startMyAnimation(ringView.getMyWidth(),rect);
-                return false;
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if (position==0){
+                    viewPager.setCurrentItem(10,false);
+                }
+                else if (position==11){
+
+                    viewPager.setCurrentItem(1,false);
+                }
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if(state==1) {//state有三种状态下文会将，当手指刚触碰屏幕时state的值为1，我们就在这个时候给mViewPagerIndex 赋值。
+
+                }
+            }
+        });
+        jinbi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FirstActivity.this,EmptyActivity.class);
+                startActivity(intent);
+            }
+        });
+        xiong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FirstActivity.this,EmptyActivity.class);
+                startActivity(intent);
+            }
+        });
+        hua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FirstActivity.this,EmptyActivity.class);
+                startActivity(intent);
+            }
+        });
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FirstActivity.this,EmptyActivity.class);
+                startActivity(intent);
+            }
+        });
+        zhuanlun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FirstActivity.this,EmptyActivity.class);
+                startActivity(intent);
             }
         });
 
     }
 
+
+    private void initView(){
+        centerImage = (ImageView)findViewById(R.id.first_image_2);
+        paint = (PaintView)findViewById(R.id.first_paint) ;
+        leftLight = (ImageView)findViewById(R.id.left_light) ;
+        rightLight = (ImageView)findViewById(R.id.right_light) ;
+        leftCatch = (ImageView)findViewById(R.id.first_catch) ;
+        spin = (ImageView)findViewById(R.id.first_spin) ;
+        zhuanpan = (ImageView)findViewById(R.id.first_zhuanpan) ;
+        watch = (ImageView)findViewById(R.id.watch_1) ;
+        leftCircle = (ImageView)findViewById(R.id.dengguang) ;
+        ringView =(RingView)findViewById(R.id.first_ring) ;
+        jinbi = (ImageView)findViewById(R.id.first_jinbi);
+        time = (ImageView)findViewById(R.id.first_time);
+        xiong = (ImageView)findViewById(R.id.first_xiong);
+        hua = (ImageView)findViewById(R.id.first_hua);
+        zhuanlun = (ImageView)findViewById(R.id.first_zhuanlun);
+
+        viewPager = (CustomViewPager) findViewById(R.id.first_viewpager);
+        mFragments = new ArrayList<>();
+        for (int i = 0; i <12 ; i++) {
+            CrownFragment fragment = new CrownFragment();
+            fragment.setPaintView(paint);
+            fragment.setWidth(1080);
+            mFragments.add(fragment);
+        }
+        MyViewpagerAdapter myViewpagerAdapter = new MyViewpagerAdapter(getSupportFragmentManager(),mFragments);
+
+        viewPager.setAdapter(myViewpagerAdapter);
+        viewPager.setOffscreenPageLimit(3);
+        viewPager.setCurrentItem(1);
+        Glide.with(this).load(R.drawable.left_light).into(leftLight);
+        Glide.with(this).load(R.drawable.right_light).into(rightLight);
+        Glide.with(this).load(R.drawable.catch_image).into(leftCatch);
+        Glide.with(this).load(R.drawable.spin).into(spin);
+        Glide.with(this).load(R.drawable.zhuanpan).into(zhuanpan);
+        Glide.with(this).load(R.drawable.watch1).into(watch);
+        Glide.with(this).load(R.drawable.dengguang).into(leftCircle);
+
+
+
+
+    }
+    private class MyViewpagerAdapter extends FragmentPagerAdapter{
+
+        private List<Fragment>mFragments;
+
+        public MyViewpagerAdapter(FragmentManager fm, List<Fragment> fragments) {
+            super(fm);
+            mFragments = new ArrayList<>();
+            mFragments.addAll(fragments);
+        }
+
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragments.size();
+        }
+
+
+    }
 
 
 }
