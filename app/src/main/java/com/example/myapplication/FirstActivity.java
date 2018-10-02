@@ -27,7 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FirstActivity extends AppCompatActivity {
-
+    private ImageView bag;
+   private   ImageView coin;
     private float mPosX,mPosY,mCurPosX,mCurPosY;
     private RingView ringView;
     private ImageView centerImage;
@@ -45,9 +46,14 @@ public class FirstActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
+
         initView();
         initListener();
-
+        View decorView = getWindow().getDecorView();
+        int option = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(option);
+        bag.bringToFront();
+        coin.bringToFront();
 
 
 
@@ -174,6 +180,8 @@ public class FirstActivity extends AppCompatActivity {
 
 
     private void initView(){
+        bag=(ImageView)findViewById(R.id.bag);
+        coin=(ImageView)findViewById(R.id.coin);
         centerImage = (ImageView)findViewById(R.id.first_image_2);
         paint = (PaintView)findViewById(R.id.first_paint) ;
         leftLight = (ImageView)findViewById(R.id.left_light) ;

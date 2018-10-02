@@ -29,6 +29,9 @@ ImageView candyRain;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_win);
+        View decorView = getWindow().getDecorView();
+        int option = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(option);
         init();
     }
     public void init(){
@@ -48,15 +51,16 @@ explode.bringToFront();
             @Override
             public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                 GifDrawable gifDrawable=(GifDrawable)resource;
-               // gifDrawable.setLoopCount(1);
+                gifDrawable.setLoopCount(1);
                 return false;
             }
         }).into(explode);
         continButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(WinActivity.this,ToyMachineActivity.class);
+                Intent intent=new Intent(WinActivity.this,VideoActivity.class);
                 startActivity(intent);
+
             }
         });
         numberImage.bringToFront();
