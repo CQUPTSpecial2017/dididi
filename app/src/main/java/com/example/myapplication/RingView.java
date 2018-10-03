@@ -120,22 +120,57 @@ public class RingView extends View  {
 
     private void  initLocations(){
         float x,y;
-        itemHeightDp=35;
-        itemWidthDp=35;
+        itemHeightDp=40;
+        itemWidthDp=40;
         bigItemHeightDp = 50;
         bigItemWidthDp = 50;
         for (int i = 0; i <showNumber ; i++) {
-            if (i<5)
-                x= i * dip2px(context,(allWidthDp/2-30)/5);
-            else if (i>5)
-                x= width/2 + (i-5)*dip2px(context,(allWidthDp/2-40)/5) ;
-            else
-                x= dip2px(context,(allWidthDp/2-bigItemWidthDp/2)) ;
+
+            if (i==0) {
+                x = dip2px(context,0);  //第一个长24dp 间隔5dp
+            }
+            else if (i==1) {
+                x = dip2px(context, allWidthDp / 2 - 169);  //第二个长28dp
+            }
+            else if (i==2) {
+                x = dip2px(context, allWidthDp / 2 - 139);   //第三个长32dp
+            }
+            else if (i==3) {
+                x = dip2px(context, allWidthDp / 2 - 105);   //第四个长36dp
+            }
+            else if (i==4) {
+                x = dip2px(context, allWidthDp / 2 - 67);   //第五个长40dp
+            }
+            else if (i==5) {
+                x = width / 2-dip2px(context,25);   //中间长50dp
+            }
+            else if (i==6) {
+                x = dip2px(context, allWidthDp / 2 + 27);   //第七个长40dp
+            }
+            else if (i==7) {
+                x = dip2px(context, allWidthDp / 2 + 70);   //第八个长36dp
+            }
+            else if (i==8) {
+                x = dip2px(context, allWidthDp / 2 + 109);   //第九个长32dp
+            }
+            else if (i==9) {
+                x = dip2px(context, allWidthDp / 2 + 144);   //第十个长28dp
+            }
+            else {
+                x = dip2px(context, allWidthDp - 24);   //第十一个长24dp
+            }
+
+//            if (i<5)
+//                x= i  ;
+//            else if (i>5)
+//                x= width/2 + (i-5)*dip2px(context,(allWidthDp/2-40)/5) ;
+//            else
+//                x= dip2px(context,(allWidthDp/2-bigItemWidthDp/2)) ;
 
             if (i<5)
-                y=dip2px(context, i  * 3);
+                y=dip2px(context, (i+2)  * 2);
             else if (i>5)
-                y=dip2px(context, 24 - i * 2);
+                y=dip2px(context, 22 - i * 2);
             else
                 y=dip2px(context, 15);
             xLocations.add(x);
@@ -275,12 +310,17 @@ public class RingView extends View  {
 
         for (int i = 0; i <xLocations.size() ; i++) {
             Bitmap OrgBitmap=BitmapFactory.decodeResource(getResources(), imageId[i]);
-            if (i!=5) {
-                scaleWidths.add(i,(float) dip2px(context, itemWidthDp) / OrgBitmap.getWidth());
-                scaleHeights.add(i,(float) dip2px(context, itemHeightDp) / OrgBitmap.getHeight());
-                changeScaleWidths.add(i,(float) dip2px(context, itemWidthDp) / OrgBitmap.getWidth());
-                changeScaleHeights.add(i,(float) dip2px(context, itemHeightDp) / OrgBitmap.getHeight());
-            }else {
+            if (i<5) {
+                scaleWidths.add(i,(float) dip2px(context, itemWidthDp/2+(i+1)*itemWidthDp/10) / OrgBitmap.getWidth());
+                scaleHeights.add(i,(float) dip2px(context, itemHeightDp/2+(i+1)*itemHeightDp/10) / OrgBitmap.getHeight());
+                changeScaleWidths.add(i,(float) dip2px(context, itemWidthDp/2+(i+1)*itemWidthDp/10) / OrgBitmap.getWidth());
+                changeScaleHeights.add(i,(float) dip2px(context, itemHeightDp/2+(i+1)*itemHeightDp/10) / OrgBitmap.getHeight());
+            } else if (i>5){
+                scaleWidths.add(i,(float) dip2px(context, itemWidthDp-(i-6)*itemWidthDp/10) / OrgBitmap.getWidth());
+                scaleHeights.add(i,(float) dip2px(context, itemHeightDp-(i-6)*itemHeightDp/10) / OrgBitmap.getHeight());
+                changeScaleWidths.add(i,(float) dip2px(context, itemWidthDp-(i-6)*itemWidthDp/10) / OrgBitmap.getWidth());
+                changeScaleHeights.add(i,(float) dip2px(context, itemHeightDp-(i-6)*itemHeightDp/10) / OrgBitmap.getHeight());
+            } else{
                 scaleWidths.add(i,(float) dip2px(context, bigItemWidthDp) / OrgBitmap.getWidth());
                 scaleHeights.add(i,(float) dip2px(context, bigItemHeightDp) / OrgBitmap.getHeight());
                 changeScaleWidths.add(i,(float) dip2px(context, bigItemHeightDp) / OrgBitmap.getWidth());
@@ -322,11 +362,15 @@ public class RingView extends View  {
         initShowImageId();
         for (int i = 0; i <xLocations.size() ; i++) {
             Bitmap OrgBitmap=BitmapFactory.decodeResource(getResources(), showImageId.get(i));
-            if (i!=5) {
-                scaleWidths.set(i,(float) dip2px(context, itemWidthDp) / OrgBitmap.getWidth());
-                scaleHeights.set(i,(float) dip2px(context, itemHeightDp) / OrgBitmap.getHeight());
+            if (i<5) {
+                scaleWidths.set(i,(float) dip2px(context, itemWidthDp/2+(i+1)*itemWidthDp/10) / OrgBitmap.getWidth());
+                scaleHeights.set(i,(float) dip2px(context, itemHeightDp/2+(i+1)*itemHeightDp/10) / OrgBitmap.getHeight());
 
-            }else {
+            }else if (i>5){
+                scaleWidths.set(i,(float) dip2px(context, itemWidthDp-(i-6)*itemWidthDp/10) / OrgBitmap.getWidth());
+                scaleHeights.set(i,(float) dip2px(context, itemHeightDp-(i-6)*itemHeightDp/10) / OrgBitmap.getHeight());
+            }
+            else {
                 scaleWidths.set(i,(float) dip2px(context, bigItemWidthDp) / OrgBitmap.getWidth());
                 scaleHeights.set(i,(float) dip2px(context, bigItemHeightDp) / OrgBitmap.getHeight());
 
@@ -346,10 +390,14 @@ public class RingView extends View  {
         }
         for (int i = xLocations.size()-1; i >0 ; i-- ){
             Bitmap OrgBitmap=BitmapFactory.decodeResource(getResources(), showImageId.get(i));
-            if (i!=6) {
-                changeScaleWidths.set(i,(float) dip2px(context, itemWidthDp) / OrgBitmap.getWidth());
-                changeScaleHeights.set(i,(float) dip2px(context, itemHeightDp) / OrgBitmap.getHeight());
-            }else {
+            if (i>6) {
+                changeScaleWidths.set(i,(float) dip2px(context, itemWidthDp-(i-7)*itemWidthDp/10) / OrgBitmap.getWidth());
+                changeScaleHeights.set(i,(float) dip2px(context, itemHeightDp-(i-7)*itemHeightDp/10) / OrgBitmap.getHeight());
+            }else if(i<6){
+                changeScaleWidths.set(i,(float) dip2px(context, itemWidthDp-(5-i)*itemWidthDp/10) / OrgBitmap.getWidth());
+                changeScaleHeights.set(i,(float) dip2px(context, itemHeightDp-(5-i)*itemHeightDp/10) / OrgBitmap.getHeight());
+            }
+            else {
                 changeScaleWidths.set(i,(float) dip2px(context, bigItemWidthDp) / OrgBitmap.getWidth());
                 changeScaleHeights.set(i,(float) dip2px(context, bigItemHeightDp) / OrgBitmap.getHeight());
             }
@@ -376,7 +424,7 @@ public class RingView extends View  {
                 invalidate();
             }
         });
-        animation.setDuration(500);
+        animation.setDuration(animTime);
         animation.start();
         return currentItem;
     }
@@ -387,11 +435,15 @@ public class RingView extends View  {
         initShowImageId();
         for (int i = 0; i <xLocations.size() ; i++) {
             Bitmap OrgBitmap=BitmapFactory.decodeResource(getResources(), showImageId.get(i));
-            if (i!=6) {
-                scaleWidths.set(i,(float) dip2px(context, itemWidthDp) / OrgBitmap.getWidth());
-                scaleHeights.set(i,(float) dip2px(context, itemHeightDp) / OrgBitmap.getHeight());
+            if (i>6) {
+                scaleWidths.set(i,(float) dip2px(context, itemWidthDp-(i-7)*itemWidthDp/10) / OrgBitmap.getWidth());
+                scaleHeights.set(i,(float) dip2px(context, itemHeightDp-(i-7)*itemHeightDp/10) / OrgBitmap.getHeight());
 
-            }else {
+            }else if (i<6){
+                scaleWidths.set(i,(float) dip2px(context, itemWidthDp-(5-i)*itemWidthDp/10) / OrgBitmap.getWidth());
+                scaleHeights.set(i,(float) dip2px(context, itemHeightDp-(5-i)*itemHeightDp/10) / OrgBitmap.getHeight());
+            }
+            else  {
                 scaleWidths.set(i,(float) dip2px(context, bigItemWidthDp) / OrgBitmap.getWidth());
                 scaleHeights.set(i,(float) dip2px(context, bigItemHeightDp) / OrgBitmap.getHeight());
 
@@ -413,10 +465,14 @@ public class RingView extends View  {
         }
         for (int i = xLocations.size()-1; i >=0 ; i-- ){
             Bitmap OrgBitmap=BitmapFactory.decodeResource(getResources(), showImageId.get(i));
-            if (i!=5) {
-                changeScaleWidths.set(i,(float) dip2px(context, itemWidthDp) / OrgBitmap.getWidth());
-                changeScaleHeights.set(i,(float) dip2px(context, itemHeightDp) / OrgBitmap.getHeight());
-            }else {
+            if (i>5) {
+                changeScaleWidths.set(i,(float) dip2px(context, itemWidthDp/2+(11-i)*itemWidthDp/10) / OrgBitmap.getWidth());
+                changeScaleHeights.set(i,(float) dip2px(context, itemHeightDp/2+(11-i)*itemHeightDp/10) / OrgBitmap.getHeight());
+            }else if (i<5){
+                changeScaleWidths.set(i,(float) dip2px(context, itemWidthDp/2+(i+1)*itemWidthDp/10) / OrgBitmap.getWidth());
+                changeScaleHeights.set(i,(float) dip2px(context, itemHeightDp/2+(i+1)*itemHeightDp/10) / OrgBitmap.getHeight());
+            }
+            else {
                 changeScaleWidths.set(i,(float) dip2px(context, bigItemWidthDp) / OrgBitmap.getWidth());
                 changeScaleHeights.set(i,(float) dip2px(context, bigItemHeightDp) / OrgBitmap.getHeight());
             }
@@ -443,7 +499,7 @@ public class RingView extends View  {
                 invalidate();
             }
         });
-        animation.setDuration(500);
+        animation.setDuration(animTime);
         animation.start();
         lastIsLeft = false;
         return currentItem;

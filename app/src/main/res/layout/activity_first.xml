@@ -219,38 +219,49 @@
                 <com.example.myapplication.RingView
                     android:id="@+id/first_ring"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="75dp"
                     android:layout_marginTop="5dp"
                     >
 
                 </com.example.myapplication.RingView>
 
+                <!--<ImageView-->
+                    <!--android:layout_width="30dp"-->
+                    <!--android:layout_height="30dp"-->
+                    <!--android:layout_marginTop="40dp"-->
+                    <!--android:src="@drawable/left" />-->
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="40dp"
-                    android:src="@drawable/left" />
+                    android:layout_marginTop="5dp"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/brand_backer"/>
+                <ImageView
+                    android:id="@+id/brand"
+                    android:layout_marginTop="7dp"
+                    android:layout_width="60dp"
+                    android:layout_height="12dp"
 
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/brand"/>
                 <ImageView
                     android:id="@+id/left_light"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="30dp" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="40dp"
-                    android:src="@drawable/right" />
+                <!--<ImageView-->
+                    <!--android:layout_width="30dp"-->
+                    <!--android:layout_height="30dp"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_marginTop="40dp"-->
+                    <!--android:src="@drawable/right" />-->
 
                 <ImageView
                     android:id="@+id/right_light"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="30dp" />
 
 

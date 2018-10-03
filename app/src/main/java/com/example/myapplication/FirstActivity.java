@@ -38,10 +38,10 @@ public class FirstActivity extends AppCompatActivity {
     private ImageView jinbi,xiong,time,zhuanlun,hua;
     private PaintView paint;
         private List<Fragment> mFragments;
-    private ImageView leftLight,rightLight,leftCatch,spin,zhuanpan,watch,leftCircle;
+    private ImageView leftLight,rightLight,leftCatch,spin,zhuanpan,watch,leftCircle,brand;
     private CustomViewPager viewPager ;
     private float x,y,width,heigth;
-
+    private int titleIds[]={R.drawable.sss,R.drawable.you_win,R.drawable.brand};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,16 +89,16 @@ public class FirstActivity extends AppCompatActivity {
                         if (mCurPosX - mPosX > 0
                                 && (Math.abs(mCurPosX - mPosX) > 25)) {
                             int i;
-
                             i=ringView.startRightAnimation(mPosX,mCurPosX);
+                            brand.setImageResource(titleIds[i%titleIds.length]);
                             centerImage.setImageResource(imgIds[i]);
                             viewPager.setCurrentItem(i,true);
 
                         } else if (mCurPosX - mPosX < 0
                                 && (Math.abs(mCurPosX - mPosX) > 25)) {
                             int i;
-
                             i=ringView.startLeftAnimation(mPosX,mCurPosX);
+                            brand.setImageResource(titleIds[i%titleIds.length]);
                             centerImage.setImageResource(imgIds[i]);
                             viewPager.setCurrentItem(i,true);
                 }
@@ -197,6 +197,7 @@ public class FirstActivity extends AppCompatActivity {
         xiong = (ImageView)findViewById(R.id.first_xiong);
         hua = (ImageView)findViewById(R.id.first_hua);
         zhuanlun = (ImageView)findViewById(R.id.first_zhuanlun);
+        brand = (ImageView)findViewById(R.id.brand);
 
         viewPager = (CustomViewPager) findViewById(R.id.first_viewpager);
         mFragments = new ArrayList<>();
