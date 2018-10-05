@@ -29,32 +29,34 @@
 
 
     </com.example.myapplication.PaintView>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorPrimary"/>
     <RelativeLayout
         android:id="@+id/first_linear"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         android:background="@drawable/head_background">
         <ImageView
 
             android:layout_centerInParent="true"
             android:id="@+id/first_xiong"
-            android:layout_width="55dp"
-            android:layout_height="50dp"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/deepblue_to_blue"
-            android:foreground="@drawable/xiong"
 
+            android:foreground="@drawable/xiong"
             />
         <ImageView
             android:layout_toLeftOf="@id/first_xiong"
             android:id="@+id/first_time"
             android:layout_width="30dp"
-            android:layout_height="35dp"
+            android:layout_height="30dp"
             android:layout_marginRight="30dp"
-            android:background="@drawable/deepblue_to_blue"
-            android:foreground="@drawable/time"
+            android:src="@drawable/time"
             android:layout_centerVertical="true"
             />
         <com.example.myapplication.StrokeTextView
@@ -74,8 +76,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_toLeftOf="@id/first_time"
-            android:background="@drawable/deepblue_to_blue"
-            android:foreground="@drawable/jinbi"
+            android:src="@drawable/jinbi"
             android:layout_centerVertical="true"
             android:layout_marginRight="40dp"
             />
@@ -98,7 +99,7 @@
             android:layout_toRightOf="@id/first_xiong"
             android:id="@+id/first_hua"
             android:layout_width="25dp"
-            android:layout_height="35dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/hua"
             android:layout_centerVertical="true"
@@ -125,7 +126,7 @@
             />
         <com.example.myapplication.StrokeTextView
             android:layout_toRightOf="@id/first_zhuanlun"
-
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -133,8 +134,8 @@
             android:textColor="#fff"
             android:textStyle="bold"
             android:textSize="14sp"
-            android:layout_centerVertical="true"
             />
+
     </RelativeLayout>
 
 
@@ -143,7 +144,7 @@
                 android:id="@+id/first_image_layout"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:layout_marginTop="3dp"
+
                 android:layout_below="@+id/first_linear"
                 android:background="#fff"
                 android:orientation="horizontal">
@@ -157,7 +158,7 @@
                         android:id="@+id/first_image_1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/room" />
+                        android:background="@drawable/room"/>
 
                     <ImageView
                         android:layout_width="100dp"
@@ -169,7 +170,7 @@
                     <ImageView
                         android:id="@+id/first_catch"
                         android:layout_width="60dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true" />
                 </RelativeLayout>
@@ -194,14 +195,15 @@
 
                     <ImageView
                         android:id="@+id/first_zhuanpan"
-                        android:layout_width="100dp"
+                        android:layout_width="120dp"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true" />
+                        android:layout_centerHorizontal="true"
+                        />
 
                     <ImageView
                         android:id="@+id/first_spin"
                         android:layout_width="60dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true" />
                 </RelativeLayout>
@@ -212,7 +214,7 @@
             <RelativeLayout
                 android:id="@+id/first_relative"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:layout_below="@+id/first_image_layout">
 
 
@@ -220,7 +222,6 @@
                     android:id="@+id/first_ring"
                     android:layout_width="match_parent"
                     android:layout_height="75dp"
-                    android:layout_marginTop="5dp"
                     >
 
                 </com.example.myapplication.RingView>
@@ -231,14 +232,14 @@
                     <!--android:layout_marginTop="40dp"-->
                     <!--android:src="@drawable/left" />-->
                 <ImageView
-                    android:layout_marginTop="5dp"
+
                 android:layout_width="80dp"
                 android:layout_height="30dp"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/brand_backer"/>
                 <ImageView
                     android:id="@+id/brand"
-                    android:layout_marginTop="7dp"
+                    android:layout_marginTop="2dp"
                     android:layout_width="60dp"
                     android:layout_height="12dp"
 
@@ -246,9 +247,10 @@
                     android:src="@drawable/brand"/>
                 <ImageView
                     android:id="@+id/left_light"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="30dp" />
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="40dp"
+                    android:scaleType="fitXY"/>
 
                 <!--<ImageView-->
                     <!--android:layout_width="30dp"-->
@@ -259,10 +261,11 @@
 
                 <ImageView
                     android:id="@+id/right_light"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="30dp" />
+                    android:layout_marginTop="40dp"
+                    android:scaleType="fitXY"/>
 
 
 
@@ -272,12 +275,24 @@
                         android:layout_height="70dp"
                         android:alpha="0.6"/>
 
+                <com.example.myapplication.StrokeTextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="168dp"
+                    android:layout_toStartOf="@+id/right_light"
+                    android:text="2"
+                    android:textColor="#fff"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
             </RelativeLayout>
 
                 <com.example.myapplication.CustomViewPager
                     android:id="@+id/first_viewpager"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
+                    android:layout_height="match_parent"
                     android:layout_below="@id/first_relative"
                     >
 
@@ -293,8 +308,8 @@
                 android:layout_marginTop="20dp" />
 
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:src="@drawable/bag"
@@ -302,8 +317,8 @@
 
     <ImageView
         android:id="@+id/coin"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:src="@drawable/coin" />

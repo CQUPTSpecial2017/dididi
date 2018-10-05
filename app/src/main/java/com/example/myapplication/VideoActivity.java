@@ -67,7 +67,7 @@ private final int SKIP=1;
             public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                 GifDrawable gifDrawable = (GifDrawable) resource;
                 gifDrawable.setLoopCount(1);
-                handler.sendEmptyMessageDelayed(SKIP,5500);
+                handler.sendEmptyMessageDelayed(SKIP,5400);
                 return false;
             }
         }).into(video);

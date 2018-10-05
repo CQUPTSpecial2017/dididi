@@ -35,7 +35,7 @@ public class FirstActivity extends AppCompatActivity {
     private int imgIds[]={R.drawable.aixin, R.drawable.huangguan, R.drawable.huangguan2, R.drawable.jiezhi,R.drawable.xiezi,
             R.drawable.yifu, R.drawable.huazhuangp, R.drawable.youxiji,R.drawable.denghao, R.drawable.zuanshi,
             R.drawable.yifu,R.drawable.huazhuangp };
-    private ImageView jinbi,xiong,time,zhuanlun,hua;
+    private ImageView jinbi,xiong,time,zhuanlun,hua,leftImage;
     private PaintView paint;
         private List<Fragment> mFragments;
     private ImageView leftLight,rightLight,leftCatch,spin,zhuanpan,watch,leftCircle,brand;
@@ -89,7 +89,7 @@ public class FirstActivity extends AppCompatActivity {
                         if (mCurPosX - mPosX > 0
                                 && (Math.abs(mCurPosX - mPosX) > 25)) {
                             int i;
-                            i=ringView.startRightAnimation(mPosX,mCurPosX);
+                            i=ringView.startRightAnimation();
                             brand.setImageResource(titleIds[i%titleIds.length]);
                             centerImage.setImageResource(imgIds[i]);
                             viewPager.setCurrentItem(i,true);
@@ -97,11 +97,30 @@ public class FirstActivity extends AppCompatActivity {
                         } else if (mCurPosX - mPosX < 0
                                 && (Math.abs(mCurPosX - mPosX) > 25)) {
                             int i;
-                            i=ringView.startLeftAnimation(mPosX,mCurPosX);
+                            i=ringView.startLeftAnimation();
                             brand.setImageResource(titleIds[i%titleIds.length]);
                             centerImage.setImageResource(imgIds[i]);
                             viewPager.setCurrentItem(i,true);
-                }
+                        }
+                        mCurPosX = event.getX();
+                        mCurPosY = event.getY();
+                        if  ((Math.abs(mCurPosX - mPosX) <= 25)){
+                            int i;
+                            if (mPosX<ringView.getWidth()/2){
+                                i=ringView.startLeftChange(mPosX,mCurPosX);
+                                brand.setImageResource(titleIds[i%titleIds.length]);
+                                centerImage.setImageResource(imgIds[i]);
+                                viewPager.setCurrentItem(i,true);
+                            }
+
+                            else if (mPosX>ringView.getWidth()/2){
+                                i=ringView.startRightChange(mPosX,mCurPosX);
+                                brand.setImageResource(titleIds[i%titleIds.length]);
+                                centerImage.setImageResource(imgIds[i]);
+                                viewPager.setCurrentItem(i,true);
+                            }
+
+                        }
                         break;
                 }
                 return true;
@@ -140,7 +159,9 @@ public class FirstActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ringView.setFirst(true);
                 Intent intent = new Intent(FirstActivity.this,EmptyActivity.class);
+                ringView.setFirst(false);
                 startActivity(intent);
+
             }
         });
         xiong.setOnClickListener(new View.OnClickListener() {
@@ -148,6 +169,7 @@ public class FirstActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ringView.setFirst(false);
                 Intent intent = new Intent(FirstActivity.this,EmptyActivity.class);
+                ringView.setFirst(false);
                 startActivity(intent);
             }
         });
@@ -156,6 +178,7 @@ public class FirstActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ringView.setFirst(false);
                 Intent intent = new Intent(FirstActivity.this,EmptyActivity.class);
+                ringView.setFirst(false);
                 startActivity(intent);
             }
         });
@@ -164,6 +187,7 @@ public class FirstActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ringView.setFirst(false);
                 Intent intent = new Intent(FirstActivity.this,EmptyActivity.class);
+                ringView.setFirst(false);
                 startActivity(intent);
             }
         });
@@ -172,6 +196,7 @@ public class FirstActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ringView.setFirst(false);
                 Intent intent = new Intent(FirstActivity.this,EmptyActivity.class);
+                ringView.setFirst(false);
                 startActivity(intent);
             }
         });
@@ -198,6 +223,7 @@ public class FirstActivity extends AppCompatActivity {
         hua = (ImageView)findViewById(R.id.first_hua);
         zhuanlun = (ImageView)findViewById(R.id.first_zhuanlun);
         brand = (ImageView)findViewById(R.id.brand);
+        leftImage = (ImageView)findViewById(R.id.first_image_1);
 
         viewPager = (CustomViewPager) findViewById(R.id.first_viewpager);
         mFragments = new ArrayList<>();
@@ -224,6 +250,7 @@ public class FirstActivity extends AppCompatActivity {
         Glide.with(this).load(R.drawable.zhuanpan).into(zhuanpan);
         Glide.with(this).load(R.drawable.watch1).into(watch);
         Glide.with(this).load(R.drawable.dengguang).into(leftCircle);
+
 
 
 

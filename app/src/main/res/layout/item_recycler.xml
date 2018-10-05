@@ -4,7 +4,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-        >
+
+    android:layout_marginTop="2dp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,7 +18,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="5dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
                 >
                 <ImageView
                     android:id="@+id/women"
@@ -30,7 +32,7 @@
                     android:layout_width="60dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="132dp"
+                    android:layout_marginTop="139dp"
                     android:layout_marginEnd="72dp"
 
                     android:src="@drawable/contin"
@@ -50,20 +52,21 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp">
+                >
                 <ImageView
                     android:id="@+id/airplane"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-
-                    android:src="@drawable/airplane" />
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:src="@drawable/watch" />
 
                 <ImageView
                     android:id="@+id/catchc"
                     android:layout_width="60dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="130dp"
+                    android:layout_marginTop="139dp"
                     android:layout_marginEnd="72dp"
                     android:layout_marginBottom="16dp"
                     android:src="@drawable/contin"
