@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBar;
@@ -34,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     ImageView playButton;
     CallbackManager callbackManager;
     AccessToken accessToken;
-
+    ImageView backer1;
     private String userId = "";
     private String name = "";
     private String imgUrl = "";
@@ -70,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void init() {
+        backer1=(ImageView)findViewById(R.id.backer1);
         callbackManager = CallbackManager.Factory.create();
         playButton = (ImageView) findViewById(R.id.playButton);
         loginButton = (ImageView) findViewById(R.id.loginButton);
@@ -121,10 +123,29 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         giftImage.bringToFront();
+        Glide.with(this).load(R.drawable.bacer).into(backer1);
+
         Glide.with(this).load(R.drawable.gift2).into(giftImage);
 
 
     }
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus && Build.VERSION.SDK_INT >= 19) {
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
+    }
+
+
+
 
 
 
