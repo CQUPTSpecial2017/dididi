@@ -26,7 +26,9 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.DemoHolder> {
     }
     @Override
     public void onBindViewHolder(DemoHolder holder, int position) {
-        Glide.with(context).load(R.drawable.catchpin).into(holder.catchd);
+        Glide.with(context).load(R.drawable.catchpin).into(holder.catchb);
+        Glide.with(context).load(R.drawable.catchpin).into(holder.catchc);
+
     }
 
     @Override
@@ -35,13 +37,14 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.DemoHolder> {
     }
 
     class DemoHolder extends RecyclerView.ViewHolder {
-        ImageView love3;
-        ImageView catchd;
+
+        ImageView catchb;
+        ImageView catchc;
 
         DemoHolder(View itemView) {
             super(itemView);
-            love3=(ImageView)itemView.findViewById(R.id.love3);
-            catchd=(ImageView)itemView.findViewById(R.id.catchd);
+            catchb=(ImageView)itemView.findViewById(R.id.catchb);
+            catchc=(ImageView)itemView.findViewById(R.id.catchc);
 
         }
     }

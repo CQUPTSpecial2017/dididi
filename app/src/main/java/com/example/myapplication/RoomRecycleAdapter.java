@@ -44,7 +44,7 @@ public class RoomRecycleAdapter extends RecyclerView.Adapter<RoomRecycleAdapter.
     public void onBindViewHolder(RoomHolder holder, int position) {
         Glide.with(context).load(R.drawable.catchpin).into(holder.catchb);
         Glide.with(context).load(R.drawable.catchpin).into(holder.catchc);
-        Glide.with(context).load(R.drawable.catchpin).into(holder.catchd);
+
     }
 
     @Override
@@ -56,7 +56,6 @@ public class RoomRecycleAdapter extends RecyclerView.Adapter<RoomRecycleAdapter.
         float x,y;
         ImageView love1;
         ImageView love2;
-        ImageView love3;ImageView catchd;
         ImageView catchc;
         ImageView catchb;
 
@@ -67,7 +66,7 @@ public class RoomRecycleAdapter extends RecyclerView.Adapter<RoomRecycleAdapter.
 
             love1=(ImageView)itemView.findViewById(R.id.love1);
             love2=(ImageView)itemView.findViewById(R.id.love2);
-            love3=(ImageView)itemView.findViewById(R.id.love3); catchd=(ImageView)itemView.findViewById(R.id.catchd);
+
             love1.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -90,17 +89,7 @@ public class RoomRecycleAdapter extends RecyclerView.Adapter<RoomRecycleAdapter.
                     return false;
                 }
             });
-            love3.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View view, MotionEvent motionEvent) {
-                    int[] location = new int[2];
-                    love3.getLocationOnScreen(location);
-                    paintView.startMyAnimation(width,location);
-                    paintView.bringToFront();
 
-                    return false;
-                }
-            });
         }
     }
 

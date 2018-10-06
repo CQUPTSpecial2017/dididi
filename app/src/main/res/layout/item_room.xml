@@ -7,40 +7,80 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_marginTop="5dp">
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_below="@id/testItem"
+        android:layout_height="180dp"
+        android:id="@+id/testItem">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            >
+            <ImageView
+                android:id="@+id/women"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/watch" />
 
-        >
+            <ImageView
+                android:id="@+id/catchb"
+                android:layout_width="60dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="139dp"
+                android:layout_marginEnd="72dp"
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/lipstick"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+                android:src="@drawable/contin"
+                />
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
 
-            android:src="@drawable/love"
-            android:id="@+id/love3"
-            android:layout_alignParentRight="true" />
+                android:src="@drawable/love"
+                android:id="@+id/love1"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            >
+            <ImageView
+                android:id="@+id/airplane"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:src="@drawable/women" />
 
-        <ImageView
-            android:id="@+id/catchd"
-            android:layout_width="60dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="260dp"
-            android:layout_marginBottom="8dp"
-            android:src="@drawable/contin"
-            />
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/catchc"
+                android:layout_width="60dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="139dp"
+                android:layout_marginEnd="72dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/contin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/airplane"
+                app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+
+                android:src="@drawable/love"
+                android:id="@+id/love2"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>

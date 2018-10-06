@@ -337,7 +337,27 @@ public class RingView extends View  {
         scaleWidths.add(showNumber,0.1f);
 
     }
+    public int startLeftSwife(float postX,float curX){
+        //个数
+        float i = (postX-curX)/trueItemWidth;
+        animTime = 300;
+        for (int j = 0; j <i ; j++) {
+            startLeftAnimation();
+        }
+        animTime = 500;
+        return currentItem;
+    }
+    public int startRightSwife(float postX,float curX){
+        //个数
+        float i = (curX-postX)/trueItemWidth;
+        animTime = 300;
+        for (int j = 0; j <i ; j++) {
+            startRightAnimation();
+        }
+        animTime = 500;
 
+        return currentItem;
+    }
     public int startLeftChange(float postX,float curX){
         //个数
         float i = (xLocations.get(3)-postX)/trueItemWidth;

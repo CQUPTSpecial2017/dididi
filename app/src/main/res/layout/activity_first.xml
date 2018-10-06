@@ -158,7 +158,7 @@
                         android:id="@+id/first_image_1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/room"/>
+                        android:scaleType="fitXY"/>
 
                     <ImageView
                         android:layout_width="100dp"
@@ -180,7 +180,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/centerimage" />
+                    android:src="@drawable/centerimage"
+                    android:scaleType="fitXY"/>
 
                 <RelativeLayout
                     android:layout_width="0dp"

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.media.Image;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -32,9 +33,8 @@ public class FirstActivity extends AppCompatActivity {
     private float mPosX,mPosY,mCurPosX,mCurPosY;
     private RingView ringView;
     private ImageView centerImage;
-    private int imgIds[]={R.drawable.aixin, R.drawable.huangguan, R.drawable.huangguan2, R.drawable.jiezhi,R.drawable.xiezi,
-            R.drawable.yifu, R.drawable.huazhuangp, R.drawable.youxiji,R.drawable.denghao, R.drawable.zuanshi,
-            R.drawable.yifu,R.drawable.huazhuangp };
+    private int imgIds[]={R.drawable.a, R.drawable.b,R.drawable.c,R.drawable.d,R.drawable.e,R.drawable.f,R.drawable.g,
+            R.drawable.h};
     private ImageView jinbi,xiong,time,zhuanlun,hua,leftImage;
     private PaintView paint;
         private List<Fragment> mFragments;
@@ -86,20 +86,21 @@ public class FirstActivity extends AppCompatActivity {
 //                            //向上滑动
 //                            tiShi(mContext,"向上");
 //                        }
+
                         if (mCurPosX - mPosX > 0
                                 && (Math.abs(mCurPosX - mPosX) > 25)) {
                             int i;
-                            i=ringView.startRightAnimation();
+                            i=ringView.startRightSwife(mPosX,mCurPosX);
                             brand.setImageResource(titleIds[i%titleIds.length]);
-                            centerImage.setImageResource(imgIds[i]);
+                            centerImage.setImageResource(imgIds[i%8]);
                             viewPager.setCurrentItem(i,true);
 
                         } else if (mCurPosX - mPosX < 0
                                 && (Math.abs(mCurPosX - mPosX) > 25)) {
                             int i;
-                            i=ringView.startLeftAnimation();
+                            i=ringView.startLeftSwife(mPosX,mCurPosX);
                             brand.setImageResource(titleIds[i%titleIds.length]);
-                            centerImage.setImageResource(imgIds[i]);
+                            centerImage.setImageResource(imgIds[i%8]);
                             viewPager.setCurrentItem(i,true);
                         }
                         mCurPosX = event.getX();
@@ -109,14 +110,14 @@ public class FirstActivity extends AppCompatActivity {
                             if (mPosX<ringView.getWidth()/2){
                                 i=ringView.startLeftChange(mPosX,mCurPosX);
                                 brand.setImageResource(titleIds[i%titleIds.length]);
-                                centerImage.setImageResource(imgIds[i]);
+                                centerImage.setImageResource(imgIds[i%8]);
                                 viewPager.setCurrentItem(i,true);
                             }
 
                             else if (mPosX>ringView.getWidth()/2){
                                 i=ringView.startRightChange(mPosX,mCurPosX);
                                 brand.setImageResource(titleIds[i%titleIds.length]);
-                                centerImage.setImageResource(imgIds[i]);
+                                centerImage.setImageResource(imgIds[i%8]);
                                 viewPager.setCurrentItem(i,true);
                             }
 
@@ -208,6 +209,7 @@ public class FirstActivity extends AppCompatActivity {
         bag=(ImageView)findViewById(R.id.bag);
         coin=(ImageView)findViewById(R.id.coin);
         centerImage = (ImageView)findViewById(R.id.first_image_2);
+        centerImage.setImageResource(R.drawable.a);
         paint = (PaintView)findViewById(R.id.first_paint) ;
         leftLight = (ImageView)findViewById(R.id.left_light) ;
         rightLight = (ImageView)findViewById(R.id.right_light) ;
@@ -250,6 +252,7 @@ public class FirstActivity extends AppCompatActivity {
         Glide.with(this).load(R.drawable.zhuanpan).into(zhuanpan);
         Glide.with(this).load(R.drawable.watch1).into(watch);
         Glide.with(this).load(R.drawable.dengguang).into(leftCircle);
+        Glide.with(this).load(R.drawable.room).into(leftImage);
 
 
 
@@ -279,6 +282,17 @@ public class FirstActivity extends AppCompatActivity {
 
 
     }
-
+    @Override public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus && Build.VERSION.SDK_INT >= 19) {
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+                    View.SYSTEM_UI_FLAG_FULLSCREEN |
+                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
+    }
 
 }
